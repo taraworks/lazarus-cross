@@ -72,10 +72,10 @@ RUN \
 
 # Build pascal compiler(s)
 RUN \
+    # cd /usr/share/fpcsrc/3.0.4 && make distclean && \
+    # cd /usr/share/fpcsrc/3.0.4 && make crossinstall CPU_TARGET=i386 OS_TARGET=darwin CROSSBINDIR=/opt/osxcross/target/bin BINUTILSPREFIX=i386-apple-darwin15- INSTALL_PREFIX=/opt/osxcross/target OPT="-gl -gw -godwarfsets -XX -CX -Xd -Fl/opt/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib" FPC=ppcross386 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin:/usr/lib/fpc/3.0.4 && \
     cd /usr/share/fpcsrc/3.0.4 && make distclean && \
-    cd /usr/share/fpcsrc/3.0.4 && make crossinstall CPU_TARGET=i386 OS_TARGET=darwin CROSSBINDIR=/opt/osxcross/target/bin BINUTILSPREFIX=i386-apple-darwin15- INSTALL_PREFIX=/opt/osxcross/target OPT=-gl -gw -godwarfsets -XX -CX -Xd -Fl/opt/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib FPC=ppcross386 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin && \
-    cd /usr/share/fpcsrc/3.0.4 && make distclean && \
-    cd /usr/share/fpcsrc/3.0.4 && make crossinstall CPU_TARGET=x86_64 OS_TARGET=darwin CROSSBINDIR=/opt/osxcross/target/bin BINUTILSPREFIX=x86_64-apple-darwin15- INSTALL_PREFIX=/opt/osxcross/target OPT=-gl -gw -godwarfsets -XX -CX -Xd -Fl/opt/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib FPC=ppcrossx64 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin
+    cd /usr/share/fpcsrc/3.0.4 && make crossinstall CPU_TARGET=x86_64 OS_TARGET=darwin CROSSBINDIR=/opt/osxcross/target/bin BINUTILSPREFIX=x86_64-apple-darwin15- INSTALL_PREFIX=/opt/osxcross/target OPT="-gl -gw -godwarfsets -XX -CX -Xd -Fl/opt/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib" FPC=ppcx64 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin:/usr/lib/fpc/3.0.4
 
     # echo "add the following lines to /etc/fpc.cfg"
     # echo "#IFDEF darwin"
