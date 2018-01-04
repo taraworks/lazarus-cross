@@ -58,7 +58,6 @@ RUN \
 
 # Install cctools
 RUN \
-    cd /opt/cctools-port/cctools && make clean && \
     cd /opt/cctools-port/cctools && ./configure --prefix=/opt/osxcross/target --with-libtapi=/opt/osxcross/target --with-llvm-config=/opt/osxcross/target/bin/llvm-config --target=i386-apple-darwin11 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin  && \
     cd /opt/cctools-port/cctools && PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin make && \
     cd /opt/cctools-port/cctools && PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin make install && \
