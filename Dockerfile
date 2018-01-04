@@ -11,7 +11,7 @@ RUN \
   apt-get install -y clang fuse libfuse-dev libbz2-1.0 libbz2-dev && \
   apt-get install -y libbz2-ocaml libbz2-ocaml-dev cmake libgtk2.0-dev && \
   apt-get install -y libgpmg1-dev fakeroot libncurses5-dev zlib1g-dev && \
-  apt-get install -y libxml2-dev autoconf automake && \
+  apt-get install -y libxml2-dev autoconf automake libssl-dev && \
   wget ftp://ftp.freepascal.org/pub/lazarus/releases/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.8.0/fpc-src_3.0.4-2_amd64.deb && \
   wget ftp://ftp.freepascal.org/pub/lazarus/releases/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.8.0/fpc_3.0.4-2_amd64.deb && \
   wget ftp://ftp.freepascal.org/pub/lazarus/releases/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.8.0/lazarus-project_1.8.0-1_amd64.deb && \
@@ -54,24 +54,24 @@ RUN \
 # Install cctools
 RUN \
     cd /opt/cctools-port/cctools && make clean && \
-    cd /opt/cctools-port/cctools && ./configure --prefix=/opt/osxcross/target --with-libtapi=/opt/osxcross/target --with-llvm-config=/opt/osxcross/target/bin/llvm-config --target=i386-apple-darwin11 PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin  && \
-    cd /opt/cctools-port/cctools && make PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin && \
-    cd /opt/cctools-port/cctools && make install PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin && \
+    cd /opt/cctools-port/cctools && ./configure --prefix=/opt/osxcross/target --with-libtapi=/opt/osxcross/target --with-llvm-config=/opt/osxcross/target/bin/llvm-config --target=i386-apple-darwin11 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin  && \
+    cd /opt/cctools-port/cctools && make PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin && \
+    cd /opt/cctools-port/cctools && make install PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin && \
     cd /opt/cctools-port/cctools && make clean  && \
-    cd /opt/cctools-port/cctools && ./configure --prefix=/opt/osxcross/target --with-libtapi=/opt/osxcross/target --with-llvm-config=/opt/osxcross/target/bin/llvm-config --target=x86_64-apple-darwin11 PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin && \
-    cd /opt/cctools-port/cctools && make PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin  && \
-    cd /opt/cctools-port/cctools && make install PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin && \
+    cd /opt/cctools-port/cctools && ./configure --prefix=/opt/osxcross/target --with-libtapi=/opt/osxcross/target --with-llvm-config=/opt/osxcross/target/bin/llvm-config --target=x86_64-apple-darwin11 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin && \
+    cd /opt/cctools-port/cctools && make PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin  && \
+    cd /opt/cctools-port/cctools && make install PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin && \
     cd /opt/cctools-port/cctools && make clean  && \
-    cd /opt/cctools-port/cctools && ./configure --prefix=/opt/osxcross/target --with-libtapi=/opt/osxcross/target --with-llvm-config=/opt/osxcross/target/bin/llvm-config --target=arm-apple-darwin11 PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin && \
-    cd /opt/cctools-port/cctools && make PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin && \
-    cd /opt/cctools-port/cctools && make install PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin
+    cd /opt/cctools-port/cctools && ./configure --prefix=/opt/osxcross/target --with-libtapi=/opt/osxcross/target --with-llvm-config=/opt/osxcross/target/bin/llvm-config --target=arm-apple-darwin11 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin && \
+    cd /opt/cctools-port/cctools && make PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin && \
+    cd /opt/cctools-port/cctools && make install PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin
 
 # Build pascal compiler(s)
 RUN \
     cd /usr/share/fpcsrc/3.0.4 && make distclean && \
-    cd /usr/share/fpcsrc/3.0.4 && make crossinstall CPU_TARGET=i386 OS_TARGET=darwin CROSSBINDIR=/opt/osxcross/target/bin BINUTILSPREFIX=i386-apple-darwin15-" "INSTALL_PREFIX=/opt/osxcross/target" "OPT=-gl -gw -godwarfsets -XX -CX -Xd -Fl/opt/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib FPC=ppcross386 PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin && \
+    cd /usr/share/fpcsrc/3.0.4 && make crossinstall CPU_TARGET=i386 OS_TARGET=darwin CROSSBINDIR=/opt/osxcross/target/bin BINUTILSPREFIX=i386-apple-darwin15-" "INSTALL_PREFIX=/opt/osxcross/target" "OPT=-gl -gw -godwarfsets -XX -CX -Xd -Fl/opt/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib FPC=ppcross386 PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin && \
     cd /usr/share/fpcsrc/3.0.4 && make distclean && \
-    cd /usr/share/fpcsrc/3.0.4 && make crossinstall CPU_TARGET=x86_64 OS_TARGET=darwin CROSSBINDIR=/opt/osxcross/target/bin BINUTILSPREFIX=x86_64-apple-darwin15-" "INSTALL_PREFIX=/opt/osxcross/target" "OPT=-gl -gw -godwarfsets -XX -CX -Xd -Fl/opt/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib" "FPC=ppcrossx64" "PATH=${PATH}:${CLANG_ROOT}/bin:/opt/osxcross/target/bin
+    cd /usr/share/fpcsrc/3.0.4 && make crossinstall CPU_TARGET=x86_64 OS_TARGET=darwin CROSSBINDIR=/opt/osxcross/target/bin BINUTILSPREFIX=x86_64-apple-darwin15-" "INSTALL_PREFIX=/opt/osxcross/target" "OPT=-gl -gw -godwarfsets -XX -CX -Xd -Fl/opt/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib" "FPC=ppcrossx64" "PATH=${PATH}:/opt/clang/bin:/opt/osxcross/target/bin
 
     # echo "add the following lines to /etc/fpc.cfg"
     # echo "#IFDEF darwin"
