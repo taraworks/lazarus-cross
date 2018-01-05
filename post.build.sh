@@ -9,9 +9,13 @@
 # echo "-FD/${CROSS_ROOT}/osxcross/target/bin"
 # echo "#ENDIF"
 
-# ln -sf ${CROSS_ROOT}/osxcross/target/lib/fpc/3.0.4/units/i386-darwin /usr/lib/fpc/3.0.4/units/
-# ln -sf ${CROSS_ROOT}/osxcross/target/lib/fpc/3.0.4/units/x86_64-darwin /usr/lib/fpc/3.0.4/units/
-# ln -sf ${CROSS_ROOT}/osxcross/target/bin/i386-apple-darwin11-as ${CROSS_ROOT}/osxcross/target/bin/i386-darwin-clang
-# ln -sf ${CROSS_ROOT}/osxcross/target/bin/i386-apple-darwin11-ld ${CROSS_ROOT}/osxcross/target/bin/i386-darwin-ld
+echo 'program Hello;' > hello.pas
+echo 'begin' >> hello.pas
+echo "    writeln ('Hello, world.')" >> hello.pas
+echo 'end.' >> hello.pas
 
-# echo "PATH=\$PATH:${CROSS_ROOT}/clang/bin:${CROSS_ROOT}/osxcross/target/bin ${CROSS_ROOT}/osxcross/target/lib/fpc/3.0.4/ppcross386 -Tdarwin -XR${CROSS_ROOT}/osxcross/target/SDK/MacOSX10.11.sdk -va hello.pas"
+echo "building hello.exe for win32"
+PATH=$PATH:${CROSS_ROOT}/clang/bin:${CROSS_ROOT}/osxcross/target/bin ${CROSS_ROOT}/windows/lib/fpc/3.0.4/ppcross386 -Twin32 -va hello.pas
+
+echo "building hello for darwin32"
+PATH=$PATH:${CROSS_ROOT}/clang/bin:${CROSS_ROOT}/osxcross/target/bin ${CROSS_ROOT}/darwin/lib/fpc/3.0.4/ppcross386 -Tdarwin -XR${CROSS_ROOT}/osxcross/target/SDK/MacOSX10.11.sdk -va hello.pas

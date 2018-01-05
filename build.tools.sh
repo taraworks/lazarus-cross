@@ -7,6 +7,7 @@ function install_fpc(){
     wget ftp://ftp.freepascal.org/pub/lazarus/releases/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.8.0/fpc-src_3.0.4-2_amd64.deb
     wget ftp://ftp.freepascal.org/pub/lazarus/releases/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.8.0/fpc_3.0.4-2_amd64.deb
     wget ftp://ftp.freepascal.org/pub/lazarus/releases/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.8.0/lazarus-project_1.8.0-1_amd64.deb
+    wget https://github.com/taraworks/lazarus-cross-sdk/raw/master/MacOSX10.11.sdk.tar.xz
     dpkg -i fpc-src_3.0.4-2_amd64.deb
     dpkg -i fpc_3.0.4-2_amd64.deb
     dpkg -i lazarus-project_1.8.0-1_amd64.deb
@@ -38,7 +39,7 @@ function install_crosstools(){
 
     install_pkg "${CROSS_ROOT}/osxcross" "./build_clang.sh" "UNATTENDED=1" "INSTALLPREFIX=${CLANG_ROOT}"
     install_pkg "${CROSS_ROOT}/osxcross/build/llvm-3.9.1.src/build_stage2" 'make install'
-    install_pkg "${CROSS_ROOT}/osxcross" "cp -fv ${CROSS_ROOT}/MacOSX10.11.sdk.tar.xz tarballs/"
+    install_pkg "${CROSS_ROOT}/osxcross" "mv ${CROSS_ROOT}/MacOSX10.11.sdk.tar.xz tarballs/"
     install_pkg "${CROSS_ROOT}/osxcross" "./build.sh" "UNATTENDED=1" "PATH=${PATH}:${CLANG_ROOT}/bin"
 
     install_pkg "${CROSS_ROOT}/apple-libtapi" "./build.sh" "INSTALLPREFIX=${CROSS_ROOT}/osxcross/target" "PATH=${PATH}:${CLANG_ROOT}/bin:${CROSS_ROOT}/osxcross/target/bin"

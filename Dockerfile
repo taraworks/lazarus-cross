@@ -20,6 +20,7 @@ RUN \
 ADD config.sh /
 ADD build.tools.sh /
 ADD compilers.sh /
+ADD post.build.sh /
 
 # Build the cross tools
 RUN \
