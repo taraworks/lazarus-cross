@@ -39,8 +39,6 @@ function install_cctools(){
     install_pkg "${CROSS_ROOT}/cctools-port/cctools" "make install" "PATH=${PATH}:${CLANG_ROOT}/bin:${CROSS_ROOT}/osxcross/target/bin"
 }
 
-get_pkgs
-install_fpc
 install_xar
 install_clang
 install_libtapi

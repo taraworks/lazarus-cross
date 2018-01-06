@@ -28,3 +28,6 @@ function get_pkgs(){
         git clone https://github.com/mackyle/xar ${CROSS_ROOT}/xar
     fi
 }
+
+get_pkgs
+install_fpc
