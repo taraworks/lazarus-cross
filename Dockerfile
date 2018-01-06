@@ -18,9 +18,16 @@ RUN \
 
 # Add building scripts
 ADD config.sh /
+ADD pre.build.sh /
 ADD build.tools.sh /
 ADD compilers.sh /
 ADD post.build.sh /
+
+# PreBuild the cross tools
+RUN \
+    chmod +x /config.sh && \
+    chmod +x /pre.build.sh && \
+    /pre.build.sh
 
 # Build the cross tools
 RUN \
