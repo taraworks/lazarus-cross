@@ -26,25 +26,33 @@ ADD post.build.sh /
 # PreBuild the cross tools
 RUN \
     chmod +x /config.sh && \
+    sleep 3 && \
     chmod +x /pre.build.sh && \
+    sleep 3 && \
     /pre.build.sh
 
 # Build the cross tools
 RUN \
     chmod +x /config.sh && \
+    sleep 3 && \
     chmod +x /build.tools.sh && \
+    sleep 3 && \
     /build.tools.sh
 
 # Build the cross compilers
 RUN \
     chmod +x /config.sh && \
+    sleep 3 && \
     chmod +x /compilers.sh && \
+    sleep 3 && \
     /compilers.sh
 
 # Post build stuff to be done
 RUN \
     chmod +x /config.sh && \
+    sleep 3 && \
     chmod +x /post.build.sh && \
+    sleep 3 && \
     /post.build.sh
 
 # Define default command.
