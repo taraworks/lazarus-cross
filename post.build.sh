@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source config.sh
 
 # echo "add the following lines to /etc/fpc.cfg"
 # echo "#IFDEF darwin"
