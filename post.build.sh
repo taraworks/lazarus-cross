@@ -21,8 +21,3 @@ PATH=$PATH:${CROSS_ROOT}/clang/bin:${CROSS_ROOT}/osxcross/target/bin ${CROSS_ROO
 echo "building hello for darwin32"
 PATH=$PATH:${CROSS_ROOT}/clang/bin:${CROSS_ROOT}/osxcross/target/bin ${CROSS_ROOT}/darwin/lib/fpc/3.0.4/ppcross386 -Tdarwin -XR${CROSS_ROOT}/osxcross/target/SDK/MacOSX10.11.sdk -va hello.pas
 
-# cleanup to reduce the image size
-rm -rf ${CROSS_ROOT}/apple-libtapi ${CROSS_ROOT}/cctools-port ${CROSS_ROOT}/xar
-rm -rf ${CROSS_ROOT}/osxcross/building
-cd /usr/share/fpcsrc/3.0.4/
-make distclean

@@ -29,6 +29,7 @@ function build_cross_compilers(){
     install_pkg "/usr/share/fpcsrc/3.0.4" "make crossinstall" "CPU_TARGET=${Bit64}" "OS_TARGET=darwin" "CROSSBINDIR=${CROSS_ROOT}/osxcross/target/bin" "BINUTILSPREFIX=${Bit64}-apple-darwin15-" "INSTALL_PREFIX=${CROSS_ROOT}/darwin" "OPT=-gl -gw -godwarfsets -XX -CX -Xd -Fl${CROSS_ROOT}/osxcross/target/SDK/MacOSX10.11.sdk/usr/lib" "PATH=${PATH}:${CLANG_ROOT}/bin:${CROSS_ROOT}/osxcross/target/bin"
     # link units to usr/lib/fpc
     ln -sf ${CROSS_ROOT}/darwin/lib/fpc/3.0.4/units/* /usr/lib/fpc/3.0.4/units/
+    install_pkg "/usr/share/fpcsrc/3.0.4" "make distclean"
 }
 
 build_cross_compilers
