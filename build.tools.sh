@@ -36,10 +36,6 @@ function install_cctools(){
     install_pkg "${CROSS_ROOT}/cctools-port/cctools" "make" "PATH=${PATH}:${CLANG_ROOT}/bin:${CROSS_ROOT}/osxcross/target/bin"
     install_pkg "${CROSS_ROOT}/cctools-port/cctools" "make install" "PATH=${PATH}:${CLANG_ROOT}/bin:${CROSS_ROOT}/osxcross/target/bin"
 
-    install_pkg "${CROSS_ROOT}/cctools-port/cctools" "make clean"
-    install_pkg "${CROSS_ROOT}/cctools-port/cctools" "./configure --prefix=${CROSS_ROOT}/osxcross/target --with-libtapi=${CROSS_ROOT}/osxcross/target --with-llvm-config=${CLANG_ROOT}/bin/llvm-config --target=arm-apple-darwin11" "PATH=${PATH}:${CLANG_ROOT}/bin:${CROSS_ROOT}/osxcross/target/bin"
-    install_pkg "${CROSS_ROOT}/cctools-port/cctools" "make" "PATH=${PATH}:${CLANG_ROOT}/bin:${CROSS_ROOT}/osxcross/target/bin"
-    install_pkg "${CROSS_ROOT}/cctools-port/cctools" "make install" "PATH=${PATH}:${CLANG_ROOT}/bin:${CROSS_ROOT}/osxcross/target/bin"
     rm -rf ${CROSS_ROOT}/cctools-port
 }
 
