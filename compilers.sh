@@ -7,8 +7,10 @@ Bit64="x86_64"
 
 function build_cross_compilers(){
     #setup links for the compilation
-    ln -sf ${CROSS_ROOT}/osxcross/target/bin/i386-apple-darwin11-as ${CROSS_ROOT}/osxcross/target/bin/i386-darwin-clang
-    ln -sf ${CROSS_ROOT}/osxcross/target/bin/i386-apple-darwin11-ld ${CROSS_ROOT}/osxcross/target/bin/i386-darwin-ld
+    ln -sf ${CROSS_ROOT}/osxcross/target/bin/${Bit32}-apple-darwin11-as ${CROSS_ROOT}/osxcross/target/bin/${Bit32}-darwin-clang
+    ln -sf ${CROSS_ROOT}/osxcross/target/bin/${Bit32}-apple-darwin11-ld ${CROSS_ROOT}/osxcross/target/bin/${Bit32}-darwin-ld
+    ln -sf ${CROSS_ROOT}/osxcross/target/bin/${Bit64}-apple-darwin11-as ${CROSS_ROOT}/osxcross/target/bin/${Bit64}-darwin-clang
+    ln -sf ${CROSS_ROOT}/osxcross/target/bin/${Bit64}-apple-darwin11-ld ${CROSS_ROOT}/osxcross/target/bin/${Bit64}-darwin-ld
     # windows 32
     install_pkg "/usr/share/fpcsrc/3.0.4" "make distclean"
     install_pkg "/usr/share/fpcsrc/3.0.4" "make all" "CPU_TARGET=${Bit32}" "OS_TARGET=win32"
